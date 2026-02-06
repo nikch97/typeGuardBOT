@@ -1,0 +1,55 @@
+================================================================================
+[SUSPECT] greet
+Original:
+def greet(name: str):
+    print("Hello", name)
+
+Patched:
+```python
+def greet(name: str):
+    if not isinstance(name, str):
+        raise TypeError("name must be a string")
+    print("Hello", name)
+```
+
+### 
+
+================================================================================
+[SUSPECT] add
+Original:
+def add(a: int, b: int):
+    return a + b
+
+Patched:
+```python
+def add(a: int, b: int):
+    if not isinstance(a, int):
+        raise TypeError("a must be an int")
+    if not isinstance(b, int):
+        raise TypeError("b must be an int")
+    return a + b
+```
+"""
+
+import pytest
+from typing import List, Union
+
+from typing_exercises.solutions.type_hints_and_isinstance import add
+
+
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (1, 2, 3),
+        (1.0, 2.0, 3.0),
+        ("1", "2", "12"),
+        (1, 2.0, 3.0),
+        (1.0, 2, 3.0),
+        (1, 2, 3),
+        (1.0, 2.0, 3.0),
+        ("1", "2", "12"),
+    ],
+)
+
+@pytest.mark.
+
